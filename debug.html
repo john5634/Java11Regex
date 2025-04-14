@@ -397,7 +397,7 @@
     {
         name: "Named Groups",
         raw: `{
-  "pattern": "(?<name>John) (?<id>123456) (?<date>01/01/\d{4})",
+  "pattern": "(?<name>John) (?<id>123456) (?<date>01/01/\\\\d{4})",
   "flags": ["CASE_INSENSITIVE"],
   "input": "John 123456 01/01/1598"
 }`
@@ -421,7 +421,7 @@
     {
         name: "Mixed Capture Groups",
         raw: `{
-  "pattern": "(?<area>\d{3})-(\d{3})-(?<line>\d{4})",
+  "pattern": "(?<area>\\\\d{3})-(\\\\d{3})-(?<line>\\\\d{4})",
   "flags": [],
   "input": "123-456-7890"
 }`
@@ -429,7 +429,7 @@
     {
         name: "No Capture Groups",
         raw: `{
-  "pattern": "\d{3}-\d{2}-\d{4}",
+  "pattern": "\\\\d{3}-\\\\d{2}-\\\\d{4}",
   "flags": [],
   "input": "123-45-6789"
 }`
