@@ -465,7 +465,7 @@
 */
 
 
-
+/*
 async function runRegex() {
     try {
         const raw = document.getElementById("regexInput").value;
@@ -486,8 +486,38 @@ async function runRegex() {
     }
 }
 
+*/
 
 
+async function runRegex() {
+    try {
+        const raw = document.getElementById("regexInput").value;
+
+        // Send raw JSON to backend
+        const result = await RunRegexJava11(raw);
+        document.getElementById("regexOutput").innerHTML = syntaxHighlight(result);
+
+        // Convert raw JSON string to actual object
+        const parsed = JSON.parse(raw);
+
+        // Re-stringify with 2-space indentation
+        const reSerialized = JSON.stringify(parsed, null, 2);
+
+        // Escape for use inside a JavaScript string literal
+        const escapedLiteral = JSON.stringify(reSerialized); // Double stringified
+
+        // Create final preview string with function call
+        const preview = `await RunRegexJava11(${escapedLiteral});`;
+
+        document.getElementById("regexConsolePreview").innerHTML = syntaxHighlightCode(preview);
+    } catch (e) {
+        document.getElementById("regexOutput").textContent = "❌ Error: " + e.message;
+    }
+}
+
+
+
+	    
 
     function loadExample(index) {
         const ex = examples[index];
