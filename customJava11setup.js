@@ -9,8 +9,8 @@ async function sendFilesToRoot(emulator) {
     const textEncoder = new TextEncoder();
 
     const files = [
-        { path: "/files/minJava.tar", name: "minJava.tar" },
-        { path: "/files/RegexJSON.class", name: "RegexJSON.class" },
+        { path: "/Java11Regex/files/minJava.tar", name: "minJava.tar" },
+        { path: "/Java11Regex/files/RegexJSON.class", name: "RegexJSON.class" },
         {
             name: "run.sh",
             isInline: true,
