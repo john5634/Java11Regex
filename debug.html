@@ -465,7 +465,7 @@
 */
 
 
-
+/*
 async function runRegex() {
     try {
         const raw = document.getElementById("regexInput").value;
@@ -486,7 +486,35 @@ async function runRegex() {
     }
 }
 
+*/
 
+
+async function runRegex() {
+    try {
+        const raw = document.getElementById("regexInput").value;
+
+        // Send it to the backend
+        const result = await RunRegexJava11(raw);
+        document.getElementById("regexOutput").innerHTML = syntaxHighlight(result);
+
+        // Format for preview: use original raw input, no newlines outside the backtick
+        const escaped = raw
+            .replace(/\\/g, '\\\\')  // double-escape backslashes
+            .replace(/`/g, '\\`');   // escape backticks
+
+        // Split and indent lines inside the template literal
+        const indented = escaped.split('\n').map(line => '  ' + line).join('\n');
+        const preview = `await RunRegexJava11(\`\n${indented}\n\`);`;
+
+        document.getElementById("regexConsolePreview").innerHTML = syntaxHighlightCode(preview);
+    } catch (e) {
+        document.getElementById("regexOutput").textContent = "❌ Error: " + e.message;
+    }
+}
+
+
+
+	    
 
 
     function loadExample(index) {
